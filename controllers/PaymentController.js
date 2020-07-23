@@ -6,14 +6,18 @@ class PaymentController {
   async getMercadoPagoLink(req, res) {
     const { name, price, unit, img } = req.body;
     try {
-      const checkout = await this.paymentService.createPaymentMercadoPago(
-        name, // nombre del producto o servicio
-        price, //precio del producto o servicio
-        unit, //cantidad que estamos vendiendo
-        img // imagen de referencia del producto o servicio
-      );
+      const checkout = this.paymentService
+        .createPaymentMercadoPago(
+          name, // nombre del producto o servicio
+          price, //precio del producto o servicio
+          unit, //cantidad que estamos vendiendo
+          img // imagen de referencia del producto o servicio
+        )
+        .then((response) => {
+          res.redirect(response);
+        });
 
-      return res.redirect(checkout.init_point);
+      //   return;
       //si es exitoso los llevamos a la url de Mercado Pago
 
       //   return res.json({ url: checkout.init_point });
@@ -30,16 +34,6 @@ class PaymentController {
 
   webhook(req, res) {
     console.log(req, res);
-    if (req.method === "POST") {
-      let body = "";
-      req.on("data", (chunk) => {
-        body += chunk.toString();
-      });
-      req.on("end", () => {
-        console.log(body, "webhook response");
-        res.end("ok");
-      });
-    }
     return res.status(200);
   }
 }

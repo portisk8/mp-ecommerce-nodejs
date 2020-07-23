@@ -41,7 +41,8 @@ app.post("/webhook", (req, res) => PaymentInstance.webhook(req, res));
 
 app.get("/payment/success", function (req, res) {
   console.log(req, res);
-  res.render("home", req.query);
+  console.log(req.query);
+  res.render("paymentSucces", req.query);
 });
 app.get("/payment/pending", function (req, res) {
   console.log(req, res);

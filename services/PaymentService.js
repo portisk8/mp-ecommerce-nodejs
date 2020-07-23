@@ -1,7 +1,15 @@
 const axios = require("axios");
+const mercadopago = require("mercadopago");
 
 class PaymentService {
   constructor() {
+    //Configuracion inicial MP
+    mercadopago.configure({
+      integrator_id: "dev_24c65fb163bf11ea96500242ac130004",
+      access_token:
+        "APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398",
+    });
+
     this.tokensMercadoPago = {
       prod: {},
       test: {
@@ -28,7 +36,7 @@ class PaymentService {
         // nombre que viene de la prop que recibe del controller
         description: "Dispositivo movil de Tienda e-commerce",
         // descripción del producto
-        picture_url: "https://courseit.com.ar/static/logo.png",
+        picture_url: img,
         // url de la imágen del producto
         category_id: "1234",
         // categoría interna del producto (del negocio)
@@ -56,12 +64,12 @@ class PaymentService {
         // si estan en sandbox, aca tienen que poner el email de SU usuario de prueba
         phone: {
           area_code: "11",
-          number: "22223333",
+          number: 22223333,
         },
         address: {
           zip_code: "1111",
           street_name: "False",
-          street_number: "123",
+          street_number: 123,
         },
       },
       payment_methods: {
@@ -81,33 +89,43 @@ class PaymentService {
       },
       back_urls: {
         // declaramos las urls de redireccionamiento
-        success:
-          "https://portisk8-mp-ecommerce-nodejs.herokuapp.com/payment/success",
+        success: "https://localhost:3000/payment/success",
+        //   "https://portisk8-mp-ecommerce-nodejs.herokuapp.com/payment/success",
         // url que va a redireccionar si sale todo bien
-        pending:
-          "https://portisk8-mp-ecommerce-nodejs.herokuapp.com/payment/pending",
+        pending: "https://localhost:3000/payment/pending",
+        //   "https://portisk8-mp-ecommerce-nodejs.herokuapp.com/payment/pending",
         // url a la que va a redireccionar si decide pagar en efectivo por ejemplo
-        failure:
-          "https://portisk8-mp-ecommerce-nodejs.herokuapp.com/payment/error",
+        failure: "https://localhost:3000/payment/error",
+        //   "https://portisk8-mp-ecommerce-nodejs.herokuapp.com/payment/error",
         // url a la que va a redireccionar si falla el pago
       },
-      notification_url:
-        "https://portisk8-mp-ecommerce-nodejs.herokuapp.com/webhook",
+      external_reference: "porti.sk8@gmail.com",
+      notification_url: "https://localhost:3000/webhook",
+      // "https://portisk8-mp-ecommerce-nodejs.herokuapp.com/webhook",
       // declaramos nuestra url donde recibiremos las notificaciones
       auto_return: "approved",
       // si la compra es exitosa automaticamente redirige a "success" de back_urls
     };
 
     try {
-      const request = await axios.post(url, preferences, {
-        // hacemos el POST a la url que declaramos arriba, con las preferencias
-        headers: {
-          // y el header, que contiene content-Type
-          "Content-Type": "application/json",
-        },
-      });
+      return mercadopago.preferences
+        .create(preferences)
+        .then(function (response) {
+          // Este valor reemplazará el string "$$init_point$$" en tu HTML
+          return response.body.init_point;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      //   const request = await axios.post(url, preferences, {
+      //     // hacemos el POST a la url que declaramos arriba, con las preferencias
+      //     headers: {
+      //       // y el header, que contiene content-Type
+      //       "Content-Type": "application/json",
+      //     },
+      //   });
 
-      return request.data;
+      //   return request.data;
       // devolvemos la data que devuelve el POST
     } catch (e) {
       console.log(e);
