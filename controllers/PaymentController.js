@@ -29,6 +29,7 @@ class PaymentController {
   }
 
   webhook(req, res) {
+    console.log(req, res);
     if (req.method === "POST") {
       let body = "";
       req.on("data", (chunk) => {
