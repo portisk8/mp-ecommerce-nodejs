@@ -237,6 +237,7 @@ class PaymentService {
       "-----------------------------------------------------------------"
     );
     console.log("Obteniendo JSON");
+    var url = "";
     switch (type) {
       case "payment":
         url = `https://api.mercadopago.com/v1/payments/${paymentId}?access_token=${this.tokensMercadoPago.test.access_token}`;
