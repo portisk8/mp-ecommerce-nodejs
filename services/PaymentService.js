@@ -34,7 +34,7 @@ class PaymentService {
         // id interno (del negocio) del item
         title: name,
         // nombre que viene de la prop que recibe del controller
-        description: "Dispositivo movil de Tienda e-commerce",
+        description: "Dispositivo móvil de Tienda e-commerce",
         // descripción del producto
         picture_url: img,
         // url de la imágen del producto
@@ -136,6 +136,8 @@ class PaymentService {
     return mercadopago.payment
       .findById(paymentId)
       .then((data) => {
+        console.log("Data Webhook > ");
+        console.log(data.body);
         return data.body;
         var pagamento = data.body.results[0];
 
@@ -148,6 +150,7 @@ class PaymentService {
         }
       })
       .catch((err) => {
+        console.log("Data Webhook > ");
         console.log(err);
         return err;
       });
@@ -157,6 +160,7 @@ class PaymentService {
     return mercadopago.plan
       .findById(paymentId)
       .then((data) => {
+        console.log("Data Webhook > ");
         return data.body;
         var pagamento = data.body.results[0];
 
@@ -178,6 +182,7 @@ class PaymentService {
     return mercadopago.subscription
       .findById(paymentId)
       .then((data) => {
+        console.log("Data Webhook > ");
         return data.body;
         var pagamento = data.body.results[0];
 
