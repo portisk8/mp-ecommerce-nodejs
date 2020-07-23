@@ -12,7 +12,7 @@ class PaymentController {
           name, // nombre del producto o servicio
           price, //precio del producto o servicio
           unit, //cantidad que estamos vendiendo
-          img // imagen de referencia del producto o servicio
+          imgUrl // imagen de referencia del producto o servicio
         )
         .then((response) => {
           res.redirect(response);
