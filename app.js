@@ -42,15 +42,18 @@ app.post("/webhook", (req, res) => PaymentInstance.webhook(req, res));
 app.get("/payment/success", function (req, res) {
   console.log(req, res);
   console.log(req.query);
-  res.render("paymentSucces", req.query);
+  req.query.statusCompra = "Compra exitosa";
+  res.render("paymentState", req.query);
 });
 app.get("/payment/pending", function (req, res) {
   console.log(req, res);
-  res.render("home", req.query);
+  req.query.statusCompra = "Compra pendiente";
+  res.render("paymentState", req.query);
 });
 app.get("/payment/error", function (req, res) {
   console.log(req, res);
-  res.render("home", req.query);
+  req.query.statusCompra = "Error en la Compra";
+  res.render("paymentState", req.query);
 });
 
 app.listen(process.env.PORT || 3000);

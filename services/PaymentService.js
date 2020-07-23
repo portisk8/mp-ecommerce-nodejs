@@ -89,19 +89,19 @@ class PaymentService {
       },
       back_urls: {
         // declaramos las urls de redireccionamiento
-        success: "https://localhost:3000/payment/success",
-        //   "https://portisk8-mp-ecommerce-nodejs.herokuapp.com/payment/success",
+        success:
+          "https://portisk8-mp-ecommerce-nodejs.herokuapp.com/payment/success",
         // url que va a redireccionar si sale todo bien
-        pending: "https://localhost:3000/payment/pending",
-        //   "https://portisk8-mp-ecommerce-nodejs.herokuapp.com/payment/pending",
+        pending:
+          "https://portisk8-mp-ecommerce-nodejs.herokuapp.com/payment/pending",
         // url a la que va a redireccionar si decide pagar en efectivo por ejemplo
-        failure: "https://localhost:3000/payment/error",
-        //   "https://portisk8-mp-ecommerce-nodejs.herokuapp.com/payment/error",
+        failure:
+          "https://portisk8-mp-ecommerce-nodejs.herokuapp.com/payment/error",
         // url a la que va a redireccionar si falla el pago
       },
       external_reference: "porti.sk8@gmail.com",
-      notification_url: "https://localhost:3000/webhook",
-      // "https://portisk8-mp-ecommerce-nodejs.herokuapp.com/webhook",
+      notification_url:
+        "https://portisk8-mp-ecommerce-nodejs.herokuapp.com/webhook",
       // declaramos nuestra url donde recibiremos las notificaciones
       auto_return: "approved",
       // si la compra es exitosa automaticamente redirige a "success" de back_urls
