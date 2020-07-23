@@ -40,18 +40,18 @@ app.post("/payment/new", (req, res) =>
 app.post("/webhook", (req, res) => PaymentInstance.webhook(req, res));
 
 app.get("/payment/success", function (req, res) {
-  console.log(req, res);
-  console.log(req.query);
+  // console.log(req, res);
+  // console.log(req.query);
   req.query.statusCompra = "Compra exitosa";
   res.render("paymentState", req.query);
 });
 app.get("/payment/pending", function (req, res) {
-  console.log(req, res);
+  // console.log(req, res);
   req.query.statusCompra = "Compra pendiente";
   res.render("paymentState", req.query);
 });
 app.get("/payment/error", function (req, res) {
-  console.log(req, res);
+  // console.log(req, res);
   req.query.statusCompra = "Error en la Compra";
   res.render("paymentState", req.query);
 });

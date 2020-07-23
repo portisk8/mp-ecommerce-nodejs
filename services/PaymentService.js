@@ -136,20 +136,18 @@ class PaymentService {
     return mercadopago.payment
       .findById(paymentId)
       .then((data) => {
+        console.log(
+          "-----------------------------------------------------------------"
+        );
         console.log("Data Webhook > ");
+        console.log(data);
         console.log(data.body);
         return data.body;
-        var pagamento = data.body.results[0];
-
-        if (pagamento != undefined) {
-          console.log(pagamento);
-          console.log(pagamento.external_reference);
-          console.log(pagamento.status);
-
-          return data.body;
-        }
       })
       .catch((err) => {
+        console.log(
+          "-----------------------------------------------------------------"
+        );
         console.log("Data Webhook > ");
         console.log(err);
         return err;
@@ -162,15 +160,6 @@ class PaymentService {
       .then((data) => {
         console.log("Data Webhook > ");
         return data.body;
-        var pagamento = data.body.results[0];
-
-        if (pagamento != undefined) {
-          console.log(pagamento);
-          console.log(pagamento.external_reference);
-          console.log(pagamento.status);
-
-          return data.body;
-        }
       })
       .catch((err) => {
         console.log(err);
@@ -184,15 +173,6 @@ class PaymentService {
       .then((data) => {
         console.log("Data Webhook > ");
         return data.body;
-        var pagamento = data.body.results[0];
-
-        if (pagamento != undefined) {
-          console.log(pagamento);
-          console.log(pagamento.external_reference);
-          console.log(pagamento.status);
-
-          return data.body;
-        }
       })
       .catch((err) => {
         console.log(err);
@@ -205,15 +185,6 @@ class PaymentService {
       .findById(paymentId)
       .then((data) => {
         return data.body;
-        var pagamento = data.body.results[0];
-
-        if (pagamento != undefined) {
-          console.log(pagamento);
-          console.log(pagamento.external_reference);
-          console.log(pagamento.status);
-
-          return data.body;
-        }
       })
       .catch((err) => {
         console.log(err);
@@ -222,6 +193,10 @@ class PaymentService {
   }
 
   getWebhook(paymenId, type) {
+    console.log(
+      "-----------------------------------------------------------------"
+    );
+    console.log("Obteniendo JSON");
     try {
       switch (type) {
         case "payment":
@@ -250,6 +225,9 @@ class PaymentService {
           break;
       }
     } catch (error) {
+      console.log(
+        "-----------------------------------------------------------------"
+      );
       console.log(error);
     }
   }
