@@ -256,7 +256,7 @@ class PaymentService {
         break;
 
       default:
-        url = `https://api.mercadopago.com/v1/payments/${paymenId}?access_token=${this.tokensMercadoPago.test.access_token}`;
+        url = `https://api.mercadopago.com/v1/payments/${paymentId}?access_token=${this.tokensMercadoPago.test.access_token}`;
         break;
     }
 
