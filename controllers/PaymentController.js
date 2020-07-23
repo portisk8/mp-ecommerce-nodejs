@@ -5,6 +5,7 @@ class PaymentController {
 
   async getMercadoPagoLink(req, res) {
     const { name, price, unit, img } = req.body;
+    let imgUrl = req.headers.origin + img.slice(1);
     try {
       const checkout = this.paymentService
         .createPaymentMercadoPago(
