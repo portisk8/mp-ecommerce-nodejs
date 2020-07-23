@@ -148,7 +148,7 @@ class PaymentService {
         console.log(
           "-----------------------------------------------------------------"
         );
-        console.log("Data Webhook > ");
+        console.log("Data Webhook > ERROR > ");
         console.log(err);
         return err;
       });
@@ -229,6 +229,46 @@ class PaymentService {
         "-----------------------------------------------------------------"
       );
       console.log(error);
+    }
+  }
+
+  async getWebhook2(paymentId, type) {
+    console.log(
+      "-----------------------------------------------------------------"
+    );
+    console.log("Obteniendo JSON");
+    switch (type) {
+      case "payment":
+        url = `https://api.mercadopago.com/v1/payments/${paymenId}?access_token=${this.tokensMercadoPago.test.access_token}`;
+        break;
+      case "plan":
+        url = `https://api.mercadopago.com/v1/plans/${paymenId}?access_token=${this.tokensMercadoPago.test.access_token}`;
+        break;
+      case "subscription":
+        url = `https://api.mercadopago.com/v1/subscriptions/${paymenId}?access_token=${this.tokensMercadoPago.test.access_token}`;
+        break;
+      case "invoice":
+        url = `https://api.mercadopago.com/v1/invoices/${paymenId}?access_token=${this.tokensMercadoPago.test.access_token}`;
+        break;
+      case "test":
+        url = `https://api.mercadopago.com/v1/payments/${paymenId}?access_token=${this.tokensMercadoPago.test.access_token}`;
+        break;
+
+      default:
+        url = `https://api.mercadopago.com/v1/payments/${paymenId}?access_token=${this.tokensMercadoPago.test.access_token}`;
+        break;
+    }
+
+    try {
+      const request = await axios.get(url);
+      console.log("Data Webhook > ");
+      console.log(request);
+
+      return request.data;
+    } catch (error) {
+      console.log("Data Webhook > Error > ");
+      console.log(error);
+      return error;
     }
   }
 }

@@ -33,18 +33,18 @@ class PaymentController {
     }
   }
 
-  webhook(req, res) {
+  async webhook(req, res) {
     console.log(req, res);
     var obj = req.body;
     var query = req.query;
     var paymenId = query["id"];
     var type = query.type;
-    // var result = await this.paymentService.getWebhook(paymenId, type);
-    this.paymentService
-      .getWebhook(paymenId, type)
-      .then((response) => res.status(200).json(response));
+    var result = await this.paymentService.getWebhook2(paymenId, type);
+    // this.paymentService
+    //   .getWebhook(paymenId, type)
+    //   .then((response) => res.status(200).json(response));
 
-    // return res.status(200).json(result);
+    return res.status(200).json(result);
   }
 }
 
