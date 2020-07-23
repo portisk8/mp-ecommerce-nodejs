@@ -81,11 +81,14 @@ class PaymentService {
       },
       back_urls: {
         // declaramos las urls de redireccionamiento
-        success: "https://localhost:3000/success",
+        success:
+          "https://portisk8-mp-ecommerce-nodejs.herokuapp.com/payment/success",
         // url que va a redireccionar si sale todo bien
-        pending: "https://localhost:3000.com/pending",
+        pending:
+          "https://portisk8-mp-ecommerce-nodejs.herokuapp.com/payment/pending",
         // url a la que va a redireccionar si decide pagar en efectivo por ejemplo
-        failure: "https://localhost:3000.com/error",
+        failure:
+          "https://portisk8-mp-ecommerce-nodejs.herokuapp.com/payment/error",
         // url a la que va a redireccionar si falla el pago
       },
       notification_url: "https://mercadopago-checkout.herokuapp.com/webhook",

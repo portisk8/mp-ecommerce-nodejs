@@ -39,6 +39,19 @@ app.post("/payment/new", (req, res) =>
 );
 app.post("/webhook", (req, res) => PaymentInstance.webhook(req, res));
 
+app.get("/payment/success", function (req, res) {
+  console.log(req, res);
+  res.render("home", req.query);
+});
+app.get("/payment/pending", function (req, res) {
+  console.log(req, res);
+  res.render("home", req.query);
+});
+app.get("/payment/error", function (req, res) {
+  console.log(req, res);
+  res.render("home", req.query);
+});
+
 app.listen(process.env.PORT || 3000);
 
 console.log("Puerto > ", process.env.PORT || 3000);
