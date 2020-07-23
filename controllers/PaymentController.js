@@ -37,11 +37,11 @@ class PaymentController {
     console.log(req, res);
     var obj = req.body;
     var query = req.query;
-    var paymenId = query["id"];
+    var paymentId = query["data.id"];
     var type = query.type;
-    var result = await this.paymentService.getWebhook2(paymenId, type);
+    var result = await this.paymentService.getWebhook2(paymentId, type);
     // this.paymentService
-    //   .getWebhook(paymenId, type)
+    //   .getWebhook(paymentId, type)
     //   .then((response) => res.status(200).json(response));
 
     return res.status(200).json(result);
