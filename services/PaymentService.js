@@ -246,6 +246,7 @@ class PaymentService {
           break;
 
         default:
+          return this.getpayment(paymenId, type);
           break;
       }
     } catch (error) {
