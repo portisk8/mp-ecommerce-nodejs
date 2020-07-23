@@ -132,6 +132,121 @@ class PaymentService {
       // mostramos error en caso de que falle el POST
     }
   }
+  getpayment(paymentId, type) {
+    return mercadopago.payment
+      .findById(paymentId)
+      .then((data) => {
+        return data.body;
+        var pagamento = data.body.results[0];
+
+        if (pagamento != undefined) {
+          console.log(pagamento);
+          console.log(pagamento.external_reference);
+          console.log(pagamento.status);
+
+          return data.body;
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        return err;
+      });
+  }
+
+  getplan(paymentId, type) {
+    return mercadopago.plan
+      .findById(paymentId)
+      .then((data) => {
+        return data.body;
+        var pagamento = data.body.results[0];
+
+        if (pagamento != undefined) {
+          console.log(pagamento);
+          console.log(pagamento.external_reference);
+          console.log(pagamento.status);
+
+          return data.body;
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        return err;
+      });
+  }
+
+  getsubscription(paymentId, type) {
+    return mercadopago.subscription
+      .findById(paymentId)
+      .then((data) => {
+        return data.body;
+        var pagamento = data.body.results[0];
+
+        if (pagamento != undefined) {
+          console.log(pagamento);
+          console.log(pagamento.external_reference);
+          console.log(pagamento.status);
+
+          return data.body;
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        return err;
+      });
+  }
+
+  getinvoice(paymentId, type) {
+    return mercadopago.invoice
+      .findById(paymentId)
+      .then((data) => {
+        return data.body;
+        var pagamento = data.body.results[0];
+
+        if (pagamento != undefined) {
+          console.log(pagamento);
+          console.log(pagamento.external_reference);
+          console.log(pagamento.status);
+
+          return data.body;
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        return err;
+      });
+  }
+
+  getWebhook(paymenId, type) {
+    try {
+      switch (type) {
+        case "payment":
+          url = `https://api.mercadopago.com/v1/payments/${paymenId}?access_token=${this.tokensMercadoPago.test.access_token}`;
+          return this.getpayment(paymenId, type);
+          break;
+        case "plan":
+          url = `https://api.mercadopago.com/v1/plans/${paymenId}?access_token=${this.tokensMercadoPago.test.access_token}`;
+          return this.getplan(paymenId, type);
+          break;
+        case "subscription":
+          return this.getsubscription(paymenId, type);
+          url = `https://api.mercadopago.com/v1/subscriptions/${paymenId}?access_token=${this.tokensMercadoPago.test.access_token}`;
+          break;
+        case "invoice":
+          return this.getinvoice(paymenId, type);
+          url = `https://api.mercadopago.com/v1/invoices/${paymenId}?access_token=${this.tokensMercadoPago.test.access_token}`;
+          break;
+        case "test":
+          return this.getpayment(paymenId, type);
+          url = `https://api.mercadopago.com/v1/payments/${paymenId}?access_token=${this.tokensMercadoPago.test.access_token}`;
+          break;
+
+        default:
+          break;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 //NOTA: TODAS las URLS que usemos tienen que ser reales,
