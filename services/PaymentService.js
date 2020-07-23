@@ -239,19 +239,19 @@ class PaymentService {
     console.log("Obteniendo JSON");
     switch (type) {
       case "payment":
-        url = `https://api.mercadopago.com/v1/payments/${paymenId}?access_token=${this.tokensMercadoPago.test.access_token}`;
+        url = `https://api.mercadopago.com/v1/payments/${paymentId}?access_token=${this.tokensMercadoPago.test.access_token}`;
         break;
       case "plan":
-        url = `https://api.mercadopago.com/v1/plans/${paymenId}?access_token=${this.tokensMercadoPago.test.access_token}`;
+        url = `https://api.mercadopago.com/v1/plans/${paymentId}?access_token=${this.tokensMercadoPago.test.access_token}`;
         break;
       case "subscription":
-        url = `https://api.mercadopago.com/v1/subscriptions/${paymenId}?access_token=${this.tokensMercadoPago.test.access_token}`;
+        url = `https://api.mercadopago.com/v1/subscriptions/${paymentId}?access_token=${this.tokensMercadoPago.test.access_token}`;
         break;
       case "invoice":
-        url = `https://api.mercadopago.com/v1/invoices/${paymenId}?access_token=${this.tokensMercadoPago.test.access_token}`;
+        url = `https://api.mercadopago.com/v1/invoices/${paymentId}?access_token=${this.tokensMercadoPago.test.access_token}`;
         break;
       case "test":
-        url = `https://api.mercadopago.com/v1/payments/${paymenId}?access_token=${this.tokensMercadoPago.test.access_token}`;
+        url = `https://api.mercadopago.com/v1/payments/${paymentId}?access_token=${this.tokensMercadoPago.test.access_token}`;
         break;
 
       default:
