@@ -39,7 +39,7 @@ class PaymentController {
     console.log("--------------------------------");
     console.log("JSON > POST");
     console.log("--------------------------------");
-    console.log("JSON > POST");
+    console.log(obj);
     var query = obj;
     var paymentId = query["data.id"];
     var type = query.type;
