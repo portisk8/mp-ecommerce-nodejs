@@ -34,9 +34,13 @@ class PaymentController {
   }
 
   async webhook(req, res) {
-    console.log(req, res);
+    // console.log(req, res);
     var obj = req.body;
-    var query = req.query;
+    console.log("--------------------------------");
+    console.log("JSON > POST");
+    console.log("--------------------------------");
+    console.log("JSON > POST");
+    var query = obj;
     var paymentId = query["data.id"];
     var type = query.type;
     var result = await this.paymentService.getWebhook2(paymentId, type);
